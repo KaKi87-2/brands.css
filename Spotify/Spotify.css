@@ -1,0 +1,47 @@
+:root {
+    --color-primary: #1DB954;
+    --color-darkest: #121212;
+    --color-darker:  #181818;
+    --color-dark:    #282828;
+    --color-light:   #B3B3B3;
+    --color-lighter: #FFFFFF;
+
+    --size-biggest: 232px;
+    --size-bigger:   90px;
+    --size-big:      56px;
+    --size-normal:   32px;
+    --size-small:    24px;
+
+    --font-big:     96px;
+    --font-normal:  16px;
+    --font-small:   14px;
+    --font-smaller: 12px;
+}
+
+@font-face {
+    font-family: 'Circular Sp UI v3 T';
+    font-weight: 800;
+    src: url('CircularSpUIv3T-Black.c21e63c5.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Circular Sp UI v3 T';
+    font-weight: 700;
+    src: url('CircularSpUIv3T-Bold.8d0a45cc.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Circular Sp UI v3 T';
+    font-weight: 300;
+    src: url('CircularSpUIv3T-Book.3466e0ec.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Circular Sp UI v3 T';
+    font-weight: 200;
+    src: url('CircularSpUIv3T-Light.afd9ab26.woff2') format('woff2');
+}
+
+body {
+    font-family: 'Circular Sp UI v3 T', sans-serif;
+}

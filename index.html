@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>brands.css</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .app {}
+            .app__sizes__item__box {}
+        </style>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            * :focus {
+                outline: 0;
+            }
+            select {
+                font-size: inherit;
+            }
+            ul {
+                padding-left: 0;
+            }
+            li {
+                list-style-type: none;
+            }
+            .app {
+                margin: 0;
+                padding: 2rem;
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            .app__header {
+                margin-bottom: 2rem;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .app__header__selector:not(:first-child) {
+                margin-left: 2rem;
+            }
+            .app__colors {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .app__colors__item:not(:first-child) {
+                margin-left: 2rem;
+            }
+            .app__colors__item__box {
+                margin-top: 2rem;
+                display: block;
+                width: 2rem;
+                height: 2rem;
+            }
+            .app__sizes {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .app__sizes__item {
+                display: flex;
+                flex-direction: column;
+            }
+            .app__sizes__item:not(:first-child) {
+                margin-left: 2rem;
+            }
+            .app__sizes__item__box {
+                margin-top: 2rem;
+                display: block;
+            }
+            .app__fonts {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .app__fonts__item:not(:first-child) {
+                margin-left: 2rem;
+            }
+        </style>
+        <script>
+            const
+                brands = [
+                    'Discord',
+                    'Spotify'
+                ],
+                colorVars = [
+                    '--color-primary',
+                    '--color-secondary',
+                    '--color-success',
+                    '--color-error',
+                    '--color-warning',
+                    '--color-darkest',
+                    '--color-darker',
+                    '--color-dark',
+                    '--color-medium',
+                    '--color-light',
+                    '--color-lighter',
+                    '--color-lightest'
+                ],
+                sizeVars = [
+                    '--size-biggest',
+                    '--size-bigger',
+                    '--size-big',
+                    '--size-normal',
+                    '--size-small',
+                    '--size-smaller',
+                    '--size-smallest'
+                ],
+                fontSizeVars = [
+                    '--font-biggest',
+                    '--font-big',
+                    '--font-normal',
+                    '--font-small',
+                    '--font-smaller',
+                    '--font-smallest'
+                ];
+            window.addEventListener('DOMContentLoaded', () => {
+                const
+                    appBrandSelector = document.querySelector('.app__header__selector__brand'),
+                    appBackgroundColorSelector = document.querySelector('.app__header__selector__background-color'),
+                    appMainColorSelector = document.querySelector('.app__header__selector__main-color'),
+                    appFontSizeSelector = document.querySelector('.app__header__selector__font-size');
+
+                appBrandSelector.innerHTML = brands.map(brand => `<option value="${brand}">${brand}</option>`).join('');
+
+                const updateBrand = () => {
+                    const { value: brand } = appBrandSelector;
+                    try { document.head.removeChild(document.querySelector('link')); } catch(_){}
+                    const stylesheet = document.createElement('link');
+                    stylesheet.addEventListener('load', () => {
+                        const
+                            cssVarExists = key => window.getComputedStyle(document.documentElement).getPropertyValue(key) !== '',
+                            availableColorVars = colorVars.filter(cssVarExists),
+                            availableDarkColorVars = availableColorVars.filter(key => key.startsWith('--color-dark')),
+                            availableLightColorVars = availableColorVars.filter(key => key.startsWith('--color-light')),
+                            availableSizeVars = sizeVars.filter(cssVarExists),
+                            availableFontSizeVars = fontSizeVars.filter(cssVarExists);
+
+                        appBackgroundColorSelector.innerHTML = appMainColorSelector.innerHTML = availableColorVars
+                            .map(key => `<option value="${key}">${key}</option>`).join('');
+
+                        const updateBackgroundColor = () => document.styleSheets[0].cssRules[0].style['background-color'] = `var(${appBackgroundColorSelector.value})`;
+                        appBackgroundColorSelector.value = availableDarkColorVars[1] || availableDarkColorVars[0];
+                        appBackgroundColorSelector.addEventListener('change', updateBackgroundColor);
+                        updateBackgroundColor();
+
+                        const updateMainColor = () => {
+                            const value = `var(${appMainColorSelector.value})`;
+                            document.styleSheets[0].cssRules[0].style['color'] = value;
+                            document.styleSheets[0].cssRules[1].style['background-color'] = value;
+                        };
+                        appMainColorSelector.value = availableLightColorVars[availableLightColorVars.length - 2]
+                            || availableLightColorVars[availableLightColorVars.length - 1];
+                        appMainColorSelector.addEventListener('change', updateMainColor);
+                        updateMainColor();
+
+                        const updateFontSize = () => document.styleSheets[0].cssRules[0].style['font-size'] = `var(${appFontSizeSelector.value})`;
+                        appFontSizeSelector.innerHTML = availableFontSizeVars.map(key => `<option value="${key}">${key}</option>`).join('');
+                        appFontSizeSelector.value = availableFontSizeVars.includes('--font-normal')
+                            ? '--font-normal'
+                            : availableFontSizeVars[Math.floor(availableFontSizeVars.length / 2)];
+                        appFontSizeSelector.addEventListener('change', updateFontSize);
+                        updateFontSize();
+
+                        document.querySelector('.app__colors').innerHTML = availableColorVars
+                            .map(colorVar => `<li class="app__colors__item">${colorVar} <div class="app__colors__item__box" style="background-color: var(${colorVar})"></div></li>`)
+                            .join('');
+
+                        document.querySelector('.app__sizes').innerHTML = availableSizeVars
+                            .map(sizeVar => `<li class="app__sizes__item">${sizeVar} <div class="app__sizes__item__box" style="width: var(${sizeVar}); height: var(${sizeVar})"></div></li>`)
+                            .join('');
+
+                        document.querySelector('.app__fonts').innerHTML = availableFontSizeVars
+                            .map(sizeVar => `<li class="app__fonts__item" style="font-size: var(${sizeVar})">${sizeVar}</li>`)
+                            .join('');
+                    });
+                    stylesheet.setAttribute('rel', 'stylesheet');
+                    stylesheet.setAttribute('href', `./${brand}/${brand}.css`);
+                    document.head.appendChild(stylesheet);
+                };
+                appBrandSelector.addEventListener('change', updateBrand);
+                updateBrand();
+            });
+        </script>
+    </head>
+    <body class="app">
+        <header class="app__header">
+            <label class="app__header__selector">Brand : <select class="app__header__selector__brand"></select></label>
+            <label class="app__header__selector">Background color : <select class="app__header__selector__background-color"></select></label>
+            <label class="app__header__selector">Main color : <select class="app__header__selector__main-color"></select></label>
+            <label class="app__header__selector">Font size : <select class="app__header__selector__font-size"></select></label>
+        </header>
+        <ul class="app__colors"></ul>
+        <ul class="app__sizes"></ul>
+        <ul class="app__fonts"></ul>
+    </body>
+</html>

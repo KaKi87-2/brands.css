@@ -45,4 +45,5 @@
 | Brand   | Family \ Weight | `200` Light | `300` Book | `400` Normal | `500` Medium | `600` Semi-bold | `700` Bold | `800` Black |
 |---------|-----------------|-------------|------------|--------------|--------------|-----------------|------------|-------------|
 | Discord | Whitney         | Yes         | Yes        | No           | Yes          | Yes             | Yes        | No          |
+| Discord | GG Sans         | No          | No         | Yes          | Yes          | Yes             | Yes        | Yes         |
 | Spotify | Circular        | Yes         | Yes        | No           | No           | No              | Yes        | Yes         |

@@ -1,0 +1,75 @@
+@import './Discord.css';
+
+@font-face {
+    font-family: 'gg sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('ac3f027697c11abd84295888e843f3d2.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'gg sans';
+    font-style: italic;
+    font-weight: 400;
+    src: url('2921d3a4b627bae209e175fa645471ce.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'gg sans';
+    font-style: normal;
+    font-weight: 500;
+    src: url('bf3d19297ef12291559b3edae977480c.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'gg sans';
+    font-style: italic;
+    font-weight: 500;
+    src: url('179d89004e6f9e97d7756d2e135a484e.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'gg sans';
+    font-style: normal;
+    font-weight: 600;
+    src: url('40937fded4330095ba2e541318c33f95.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'gg sans';
+    font-style: italic;
+    font-weight: 600;
+    src: url('f979c4e23d531c45acd8c11661281bc0.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'gg sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url('33ca047f7152c1abc7d3cb1c4bc64aab.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'gg sans';
+    font-style: italic;
+    font-weight: 700;
+    src: url('01e8a31affeeb55e7642619c46c977ad.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'gg sans';
+    font-style: normal;
+    font-weight: 800;
+    src: url('415da23c396a8fcb10346513a2b092d8.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'gg sans';
+    font-style: italic;
+    font-weight: 800;
+    src: url('d3e28de6f266b18b1d05a55a54f17a7e.woff2') format('woff2')
+}
+
+body {
+    font-family: 'gg sans', sans-serif;
+}

@@ -79,7 +79,8 @@
         <script>
             const
                 brands = [
-                    'Discord',
+                    'Discord_GG-Sans',
+                    'Discord_Whitney',
                     'Spotify'
                 ],
                 colorVars = [
@@ -174,7 +175,7 @@
                             .join('');
                     });
                     stylesheet.setAttribute('rel', 'stylesheet');
-                    stylesheet.setAttribute('href', `./${brand}/${brand}.css`);
+                    stylesheet.setAttribute('href', `./${brand.split('_')[0]}/${brand}.css`);
                     document.head.appendChild(stylesheet);
                 };
                 appBrandSelector.addEventListener('change', updateBrand);

@@ -1,5 +1,7 @@
 # brands.css
 
+[Preview](https://raw.githack.com/KaKi87-2/brands.css/master/index.html)
+
 ## Features
 
 ### Colors
